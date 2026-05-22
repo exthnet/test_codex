@@ -1,0 +1,3 @@
+Hello from C via Slurm
+SLURM_JOB_ID=377
+SLURMD_NODENAME=blast
