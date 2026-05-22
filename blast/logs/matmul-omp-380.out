@@ -1,0 +1,39 @@
+SLURM_JOB_ID=380
+SLURMD_NODENAME=blast
+SLURM_CPUS_PER_TASK=8
+MATRIX_SIZE=800
+REPEATS=3
+THREAD_LIST=1 2 4 8
+
+== OMP_NUM_THREADS=1 ==
+matrix_size=800 repeats=3 threads=1
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.605126,1.692208,1.254528000003e+08
+2,0.572658,1.788154,1.254528000003e+08
+3,0.576206,1.777144,1.254528000003e+08
+
+== OMP_NUM_THREADS=2 ==
+matrix_size=800 repeats=3 threads=2
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.279555,3.662969,1.254527999999e+08
+2,0.270414,3.786779,1.254527999999e+08
+3,0.266307,3.845182,1.254527999999e+08
+
+== OMP_NUM_THREADS=4 ==
+matrix_size=800 repeats=3 threads=4
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.148767,6.883233,1.254528000000e+08
+2,0.138927,7.370769,1.254528000000e+08
+3,0.135060,7.581799,1.254528000000e+08
+
+== OMP_NUM_THREADS=8 ==
+matrix_size=800 repeats=3 threads=8
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.085518,11.974106,1.254527999999e+08
+2,0.070940,14.434692,1.254527999999e+08
+3,0.068015,15.055453,1.254527999999e+08
+

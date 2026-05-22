@@ -1,0 +1,39 @@
+SLURM_JOB_ID=381
+SLURMD_NODENAME=fire
+SLURM_CPUS_PER_TASK=8
+MATRIX_SIZE=800
+REPEATS=3
+THREAD_LIST=1 2 4 8
+
+== OMP_NUM_THREADS=1 ==
+matrix_size=800 repeats=3 threads=1
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.420859,2.433118,1.254528000003e+08
+2,0.420486,2.435279,1.254528000003e+08
+3,0.420471,2.435363,1.254528000003e+08
+
+== OMP_NUM_THREADS=2 ==
+matrix_size=800 repeats=3 threads=2
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.210467,4.865373,1.254527999999e+08
+2,0.210210,4.871323,1.254527999999e+08
+3,0.210177,4.872088,1.254527999999e+08
+
+== OMP_NUM_THREADS=4 ==
+matrix_size=800 repeats=3 threads=4
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.115023,8.902570,1.254528000000e+08
+2,0.111984,9.144193,1.254528000000e+08
+3,0.112085,9.135964,1.254528000000e+08
+
+== OMP_NUM_THREADS=8 ==
+matrix_size=800 repeats=3 threads=8
+implementation=ijk_outer_i_parallel schedule=static
+run,time_sec,gflops,checksum
+1,0.068810,14.881503,1.254527999999e+08
+2,0.057386,17.843954,1.254527999999e+08
+3,0.056970,17.974374,1.254527999999e+08
+

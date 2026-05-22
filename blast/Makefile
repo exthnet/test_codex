@@ -1,21 +1,28 @@
 CC ?= gcc
 CFLAGS ?= -O2 -Wall -Wextra -std=c11
-TARGET ?= hello
-SOURCES ?= hello.c
+OMPFLAGS ?= -fopenmp
+HELLO_TARGET ?= hello
+MATMUL_TARGET ?= matmul_omp
 
-.PHONY: all clean submit logs
+.PHONY: all clean submit submit-matmul logs
 
-all: $(TARGET)
+all: $(HELLO_TARGET) $(MATMUL_TARGET)
 
-$(TARGET): $(SOURCES)
+$(HELLO_TARGET): hello.c
 	$(CC) $(CFLAGS) -o $@ $^
+
+$(MATMUL_TARGET): matmul_omp.c
+	$(CC) $(CFLAGS) $(OMPFLAGS) -o $@ $^
 
 logs:
 	mkdir -p logs
 
-submit: all logs
+submit: $(HELLO_TARGET) logs
 	sbatch run.sbatch
 
+submit-matmul: $(MATMUL_TARGET) logs
+	sbatch matmul_openmp.sbatch
+
 clean:
-	rm -f $(TARGET)
+	rm -f $(HELLO_TARGET) $(MATMUL_TARGET)
 	rm -rf logs
